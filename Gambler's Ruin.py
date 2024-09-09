@@ -5,9 +5,13 @@ import decimal
 from numpy.random import choice
 
 def main():
-    initCap = decimal.Decimal(input("Enter initial capital: "))
-    target = decimal.Decimal(input("Enter target capital: "))
-    prob = decimal.Decimal(input("Enter probability of win in %: "))/100
+    initCap = float(input("Enter initial capital: "))
+    target = float(input("Enter target capital: "))
+    prob = float(input("Enter probability of win in %: "))/100
+
+
+    # Calculating probability of success and number of bets before bankruptcy or success
+
     if prob != 0.5:
         Pr = (((1-prob/prob)**initCap - 1)/((1-prob/prob)**target - 1))
         Ex = (((((1-prob/prob)**initCap - 1)/((1-prob/prob)**target - 1))*target - 100)/(prob-(1-prob)))
@@ -17,9 +21,9 @@ def main():
 
     print("Probability of success  — ", Pr)
     print("Approximate number of bets — ", Ex)
-    initCap = float(initCap)
-    target = float(target)
-    prob = float(prob)
+
+
+    # Simulating random walk with step equal to 5% of initial cap
 
     xposition = [initCap]
     bets = [initCap*(-0.05), initCap*0.05]
