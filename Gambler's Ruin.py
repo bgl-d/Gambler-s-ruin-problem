@@ -1,23 +1,25 @@
 import random
 import matplotlib.pyplot as plt
+import math
+import decimal
 from numpy.random import choice
 
-def main() -> int:
-    print()
-    initCap = float(input("Enter initial capital: "))
-    target = float(input("Enter target capital: "))
-    prob = float(input("Enter probability of win in %: "))/100
-    Pr = initCap/target
-    print(prob)
+def main():
+    initCap = decimal.Decimal(input("Enter initial capital: "))
+    target = decimal.Decimal(input("Enter target capital: "))
+    prob = decimal.Decimal(input("Enter probability of win in %: "))/100
     if prob != 0.5:
-        Pr = ((1-prob/prob)**initCap - 1)/((1-prob/prob)**target - 1)
-        Ex = ((((1-prob/prob)**initCap - 1)/((1-prob/prob)**target - 1))*target - 100)/(prob-(1-prob))
+        Pr = (((1-prob/prob)**initCap - 1)/((1-prob/prob)**target - 1))
+        Ex = (((((1-prob/prob)**initCap - 1)/((1-prob/prob)**target - 1))*target - 100)/(prob-(1-prob)))
     else:
         Pr = initCap / target
         Ex = initCap*(target - initCap)
 
-    print("Probability of success or bankruptcy  — ", Pr)
-    print("Number of bets — ", Ex)
+    print("Probability of success  — ", Pr)
+    print("Approximate number of bets — ", Ex)
+    initCap = float(initCap)
+    target = float(target)
+    prob = float(prob)
 
     xposition = [initCap]
     bets = [initCap*(-0.05), initCap*0.05]
